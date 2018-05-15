@@ -129,7 +129,7 @@ void *senThread(void *arg0)
     /* Loop forever */
     while (1) {
 
-        for(uint8_t i=ADCS_1_MON_DEV_ID; i <= ADCS_2_MON_DEV_ID; i++) {
+        for(uint8_t i=ADCS_1_MON_DEV_ID; i <= ADCS_4_MON_DEV_ID; i++) {
             read_device_parameters(i, &ina_dev);
             sprintf(msg, "INA: %d, C %d, V %d, W %d\n", i, (int)(ina_dev.current*1000), (int)ina_dev.voltage, (int)ina_dev.power);
             UART_write(uart_dbg_bus, msg, strlen(msg));
