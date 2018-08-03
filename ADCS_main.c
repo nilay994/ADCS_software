@@ -90,9 +90,9 @@ void *mainThread(void *arg0)
     uint16_t boot_counter=0, size;
     uint8_t buf[4];
 
-    get_parameter(ADCS_boot_counter_param_id, &boot_counter, buf, &size);
-    boot_counter=0;
-    set_parameter(ADCS_boot_counter_param_id, boot_counter);
+    //get_parameter(ADCS_boot_counter_param_id, &boot_counter, buf, &size);
+    //boot_counter=0;
+    //set_parameter(ADCS_boot_counter_param_id, boot_counter);
 
     get_parameter(ADCS_boot_counter_param_id, &boot_counter, buf, &size);
     boot_counter++;
@@ -103,6 +103,8 @@ void *mainThread(void *arg0)
 
     /* Loop forever echoing */
     while (1) {
+
+        set_parameter(SBSYS_reset_clr_int_wdg_param_id, NULL);
 
         update_device(ADCS_1_MON_DEV_ID);
         usleep(1);
