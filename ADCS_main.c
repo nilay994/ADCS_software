@@ -43,6 +43,7 @@
 #include <ti/drivers/SPI.h>
 #include <ti/drivers/Watchdog.h>
 #include <ti/drivers/Timer.h>
+#include <ti/drivers/ADC.h>
 
 /* Example/Board Header files */
 #include "ADCS_Board.h"
@@ -53,8 +54,14 @@
 #include "INA226.h"
 #include "TMP100.h"
 
+#include "parameters.h"
+
+#include "osal.h"
+
 extern UART_Handle uart_dbg_bus;
 extern UART_Handle uart_pq9_bus;
+
+bool start_flag = false;
 
 /*
  *  ======== mainThread ========
@@ -68,15 +75,31 @@ void *mainThread(void *arg0)
     I2C_init();
     SPI_init();
     Timer_init();
+    ADC_init();
+    Watchdog_init();
 
     /* Turn on user LED */
-    GPIO_write(PQ9_EN, 1);
     GPIO_write(PQ9_EN, 0);
-
 
     /*ECSS services start*/
     pkt_pool_INIT();
     device_init();
+    init_parameters();
+    OSAL_init();
+
+    uint16_t boot_counter=0, size;
+    uint8_t buf[4];
+
+    get_parameter(ADCS_boot_counter_param_id, &boot_counter, buf, &size);
+    boot_counter=0;
+    set_parameter(ADCS_boot_counter_param_id, boot_counter);
+
+    get_parameter(ADCS_boot_counter_param_id, &boot_counter, buf, &size);
+    boot_counter++;
+    set_parameter(ADCS_boot_counter_param_id, boot_counter);
+
+
+    start_flag = true;
 
     /* Loop forever echoing */
     while (1) {
@@ -98,23 +121,42 @@ void *mainThread(void *arg0)
     }
 }
 
-
 /*  ======== ecssThread ========
  *  This thread runs on a higher priority, since wdg pin
  *  has to be ready for master.
  */
-void *ecssThread(void *arg0)
+void *pqReceiveThread(void *arg0)
 {
+
+    while(!start_flag) {
+        usleep(1000);
+    }
 
     /* Loop forever */
     while (1) {
          import_pkt();
-         export_pkt();
-         usleep(1000);
+         usleep(1);
     }
 
     return (NULL);
 }
+
+void *pqTransmitThread(void *arg0)
+{
+
+    while(!start_flag) {
+        usleep(1000);
+    }
+
+    /* Loop forever */
+    while (1) {
+         export_pkt();
+         usleep(1);
+    }
+
+    return (NULL);
+}
+
 
 char msg[100];
 
