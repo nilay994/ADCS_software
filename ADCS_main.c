@@ -44,6 +44,7 @@
 #include <ti/drivers/Watchdog.h>
 #include <ti/drivers/Timer.h>
 #include <ti/drivers/ADC.h>
+#include <ti/sysbios/knl/Clock.h>
 
 /* Example/Board Header files */
 #include "ADCS_Board.h"
@@ -55,14 +56,16 @@
 #include "TMP100.h"
 
 #include "parameters.h"
-
+#include "detumble_algo.h"
 #include "osal.h"
 
 extern UART_Handle uart_dbg_bus;
 extern UART_Handle uart_pq9_bus;
 
 bool start_flag = false;
-
+//extern vector_t mag1Data = {34.3, 43, 54};
+extern int16_t magData = {0,0,0};
+extern int32_t loop_time = 0;
 /*
  *  ======== mainThread ========
  */
@@ -93,6 +96,11 @@ void *mainThread(void *arg0)
     device_init();
     init_parameters();
     OSAL_init();
+
+    UART_write(uart_dbg_bus, "PING!!!", 5);
+    if(bmxMag_init()){
+        UART_write(uart_dbg_bus, "BMX is alive!", 12);
+    }
 
     uint16_t boot_counter=0, size;
     uint8_t buf[4];
@@ -179,42 +187,43 @@ void *pqTransmitThread(void *arg0)
     return (NULL);
 }
 
-
 char msg[100];
+
 
 /*  ======== senThread ========
  *  This a dbg thread for outputing sensor readings
  */
-void *senThread(void *arg0)
+void *pqDetThread(void *arg0)
 {
 
-    struct ina_device ina_dev;
-    struct tmp_device tmp_dev;
-
-    sprintf(msg, "Reset\n");
-    UART_write(uart_dbg_bus, msg, strlen(msg));
-
-    sleep(1);
-
+    while(!start_flag) {
+        usleep(1000);
+    }
+    uint32_t start_time = 0;
+    uint32_t stop_time = 0;
     /* Loop forever */
+    char uartTxBuffer[20];
     while (1) {
+        /*errors &&*/
+        bmxMag_read_calib_data(magData);
 
-        for(uint8_t i=ADCS_1_MON_DEV_ID; i <= ADCS_4_MON_DEV_ID; i++) {
-            read_device_parameters(i, &ina_dev);
-            sprintf(msg, "INA: %d, C %d, V %d, W %d\n", i, (int)(ina_dev.current*1000), (int)ina_dev.voltage, (int)ina_dev.power);
-            UART_write(uart_dbg_bus, msg, strlen(msg));
+        // make sure to leave counts below static, they aren't remembered by controlLoop,
+        // they are just incremented by controlLoop
+        static unsigned int c_tumb = 0;
+        static unsigned int c_detumb = 0;
+        vector_t b1_raw = {34.3, 43, 54};
+        vector_t b2_raw = {31.3, 41, 51};
+        vector_t s_on     = {0,0,0};
+        vector_t t_on     = {0,0,0};
+        vector_t p_tumb   = {0,0,0};
+        start_time = Clock_getTicks();
+        controlLoop(b1_raw, b2_raw, &s_on, &t_on, &p_tumb, &c_tumb, &c_detumb);
+        usleep(1000);
+        stop_time = Clock_getTicks();
 
-            sleep(1);
-        }
-
-        read_device_parameters(ADCS_TEMP_DEV_ID, &tmp_dev);
-
-        sprintf(msg, "Temp: %d\n", (int)tmp_dev.temp);
-        UART_write(uart_dbg_bus, msg, strlen(msg));
-
-        sleep(1);
-
-
+        loop_time = stop_time - start_time;
+        int len = sprintf(uartTxBuffer, "%d\n", loop_time);
+        UART_write(uart_dbg_bus, uartTxBuffer, len);
     }
 
     return (NULL);

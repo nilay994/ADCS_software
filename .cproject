@@ -24,23 +24,25 @@
 								<listOptionValue builtIn="false" value="RUNTIME_SUPPORT_LIBRARY="/>
 								<listOptionValue builtIn="false" value="CCS_MBS_VERSION=6.1.3"/>
 								<listOptionValue builtIn="false" value="OUTPUT_TYPE=executable"/>
+								<listOptionValue builtIn="false" value="PRODUCTS=com.ti.SIMPLELINK_MSP432_SDK:2.10.0.14;"/>
+								<listOptionValue builtIn="false" value="PRODUCT_MACRO_IMPORTS={&quot;com.ti.SIMPLELINK_MSP432_SDK&quot;:[&quot;${COM_TI_SIMPLELINK_MSP432_SDK_INCLUDE_PATH}&quot;,&quot;${COM_TI_SIMPLELINK_MSP432_SDK_LIBRARY_PATH}&quot;,&quot;${COM_TI_SIMPLELINK_MSP432_SDK_LIBRARIES}&quot;,&quot;${COM_TI_SIMPLELINK_MSP432_SDK_SYMBOLS}&quot;,&quot;${COM_TI_SIMPLELINK_MSP432_SDK_SYSCONFIG_MANIFEST}&quot;]}"/>
 							</option>
 							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.1104528130" name="Compiler version" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION" value="GNU_7.2.1:Linaro" valueType="string"/>
 							<targetPlatform id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.targetPlatformDebug.492812637" name="Platform" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.targetPlatformDebug"/>
 							<builder buildPath="${BuildDirectory}" id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.builderDebug.1407107406" keepEnvironmentInBuildfile="false" name="GNU Make" parallelBuildOn="true" parallelizationNumber="optimal" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.builderDebug"/>
 							<tool id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.compilerDebug.691399186" name="GNU Compiler" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.compilerDebug">
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.INCLUDE_PATH.955754259" name="Include paths (-I)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.INCLUDE_PATH" valueType="includePath">
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/delfiPQ/HAL"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/delfiPQ/ADCS"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/delfiPQ/ADCS/HAL"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/delfiPQ/OSAL"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/delfiPQ"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/core"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/PQ9_bus_software/services"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/INA226"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/TMP100"/>
-									<listOptionValue builtIn="false" value="/Users/nchronas/Documents/repos/delfiPQ/workspace7/MB85RS256A"/>
 									<listOptionValue builtIn="false" value="${INHERITED_INCLUDE_PATH}"/>
+									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INCLUDE_PATH}"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/PQ9_bus_software/delfiPQ/ADCS"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/PQ9_bus_software/delfiPQ/ADCS/HAL"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/PQ9_bus_software/delfiPQ/HAL"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/PQ9_bus_software/delfiPQ/OSAL"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/PQ9_bus_software/delfiPQ"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/PQ9_bus_software/core"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/INA226"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/TMP100"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/MB85RS256A"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR}/source/third_party/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR}/source/ti/posix/gcc"/>
@@ -48,25 +50,28 @@
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR}/kernel/tirtos/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/include"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/arm-none-eabi/include"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_INCLUDE_PATH}"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/detumble/closed_loop"/>
+									<listOptionValue builtIn="false" value="/home/nilay/workspace_v8/detumble/detumble_algo_msp"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DEFINE.1971883547" name="Define symbols (-D)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DEFINE" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="${INHERITED_SYMBOLS}"/>
+									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_SYMBOLS}"/>
 									<listOptionValue builtIn="false" value="DeviceFamily_MSP432P401x"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MCPU.848797713" name="Target CPU (-mcpu)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MCPU" value="cortex-m4" valueType="string"/>
-								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MARCH.1517325490" name="Specify the name of the target architecture (-march)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MARCH" value="armv7e-m" valueType="string"/>
+								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MARCH.1517325490" name="Target architecture (-march)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MARCH" value="armv7e-m" valueType="string"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.CODE_STATE.1365395847" name="Code state" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.CODE_STATE" value="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.CODE_STATE.THUMB" valueType="enumerated"/>
-								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFLOAT_ABI.1940310559" name="Specify if floating point hardware should be used (-mfloat-abi)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFLOAT_ABI" value="hard" valueType="string"/>
-								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFPU.694225430" name="Specify the name of the target floating point hardware/format (-mfpu)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFPU" value="fpv4-sp-d16" valueType="string"/>
+								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFLOAT_ABI.1940310559" name="Use floating point hardware (-mfloat-abi)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFLOAT_ABI" value="hard" valueType="string"/>
+								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFPU.694225430" name="Target floating point hardware/format (-mfpu)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.MFPU" value="fpv4-sp-d16" valueType="string"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.FUNCTION_SECTIONS.574433961" name="Place each function into its own section (-ffunction-sections)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.FUNCTION_SECTIONS" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DATA_SECTIONS.919795643" name="Place data items into their own section (-fdata-sections)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DATA_SECTIONS" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DEBUG.167039865" name="Generate debug information (-g)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DEBUG" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DWARF_VERSION.951587007" name="Generate debug information in DWARF version (-gdwarf-)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DWARF_VERSION" value="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.DWARF_VERSION.3" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.STRICT_DWARF.1066891924" name="Do not emit DWARF additions beyond selected version (-gstrict-dwarf)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.STRICT_DWARF" value="true" valueType="boolean"/>
-								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.C_SPECIFIC_FLAGS.779295148" name="C source specific flags" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.C_SPECIFIC_FLAGS" valueType="stringList">
+								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.C_SPECIFIC_FLAGS.779295148" name="Miscellaneous C source specific flags" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.C_SPECIFIC_FLAGS" valueType="stringList">
 									<listOptionValue builtIn="false" value="-std=c99"/>
 								</option>
-								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.ASM_SPECIFIC_FLAGS.1503951421" name="Assembly source specific flags" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.ASM_SPECIFIC_FLAGS" valueType="stringList">
+								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.ASM_SPECIFIC_FLAGS.1503951421" name="Miscellaneous assembly source specific flags" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compilerID.ASM_SPECIFIC_FLAGS" valueType="stringList">
 									<listOptionValue builtIn="false" value="-x assembler-with-cpp"/>
 								</option>
 								<inputType id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compiler.inputType__C_SRCS.2021200085" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.compiler.inputType__C_SRCS"/>
@@ -77,12 +82,14 @@
 							<tool id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.linkerDebug.1600275902" name="GNU Linker" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.exe.linkerDebug">
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.SEARCH_PATH.563287420" name="Library search path (-L, --library-path)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.SEARCH_PATH" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${INHERITED_LIBRARY_PATH}"/>
+									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_LIBRARY_PATH}"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR}/source"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR}/kernel/tirtos/packages"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR}/kernel/tirtos/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.LIBRARY.1784051537" name="Libraries (-l, --library)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.LIBRARY" valueType="libs">
 									<listOptionValue builtIn="false" value="${INHERITED_LIBRARIES}"/>
+									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_MSP432_SDK_LIBRARIES}"/>
 									<listOptionValue builtIn="false" value="ti/display/lib/display.am4fg"/>
 									<listOptionValue builtIn="false" value="ti/drivers/lib/drivers_msp432p401x.am4fg"/>
 									<listOptionValue builtIn="false" value="ti/dpl/lib/dpl_msp432p401x.am4fg"/>
@@ -97,7 +104,7 @@
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.NOSTARTFILES.1352808442" name="Do not use the standard system startup files when linking (-nostartfiles)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.NOSTARTFILES" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.STATIC.1453817090" name="Do not link with the shared libraries (-static)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.STATIC" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.GC_SECTIONS.1970893070" name="Remove unused sections (--gc-sections)" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.GC_SECTIONS" value="true" valueType="boolean"/>
-								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.OTHER_FLAGS.376349639" name="Other flags" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.OTHER_FLAGS" valueType="stringList">
+								<option id="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.OTHER_FLAGS.376349639" name="Miscellaneous flags" superClass="com.ti.ccstudio.buildDefinitions.MSP432_GNU_7.0.linkerID.OTHER_FLAGS" valueType="stringList">
 									<listOptionValue builtIn="false" value="-march=armv7e-m"/>
 									<listOptionValue builtIn="false" value="-mthumb"/>
 									<listOptionValue builtIn="false" value="-mfloat-abi=hard"/>
@@ -114,7 +121,7 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
-				<externalSettings containerId="tirtos_builds_MSP_EXP432P401R_debug_gcc;com.ti.ccstudio.buildDefinitions.MSP432.Debug.169176249" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
+				<externalSettings containerId="tirtos_builds_MSP_EXP432P401R_debug_gcc;com.ti.ccstudio.buildDefinitions.MSP432.Debug.202110488" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
 		</cconfiguration>
 		<cconfiguration id="com.ti.ccstudio.buildDefinitions.MSP432.Release.1149165747">
