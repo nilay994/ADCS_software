@@ -97,9 +97,9 @@ void *mainThread(void *arg0)
     init_parameters();
     OSAL_init();
 
-    UART_write(uart_dbg_bus, "PING!!!", 5);
+    //UART_write(uart_dbg_bus, "PING!!!", 5);
     if(bmxMag_init()){
-        UART_write(uart_dbg_bus, "BMX is alive!", 12);
+        //UART_write(uart_dbg_bus, "BMX is alive!", 12);
     }
 
     uint16_t boot_counter=0, size;
@@ -193,6 +193,7 @@ char msg[100];
 /*  ======== senThread ========
  *  This a dbg thread for outputing sensor readings
  */
+
 void *pqDetThread(void *arg0)
 {
 
@@ -203,8 +204,10 @@ void *pqDetThread(void *arg0)
     uint32_t stop_time = 0;
     /* Loop forever */
     char uartTxBuffer[20];
+    bool check1;
     while (1) {
-        /*errors &&*/
+
+        /*errors
         bmxMag_read_calib_data(magData);
 
         // make sure to leave counts below static, they aren't remembered by controlLoop,
@@ -222,8 +225,11 @@ void *pqDetThread(void *arg0)
         stop_time = Clock_getTicks();
 
         loop_time = stop_time - start_time;
-        int len = sprintf(uartTxBuffer, "%d\n", loop_time);
-        UART_write(uart_dbg_bus, uartTxBuffer, len);
+        */
+        check1 = bmxMag_read_id();
+
+        //int len = sprintf(uartTxBuffer, "alive: %d\n", check1);
+        //UART_write(uart_dbg_bus, uartTxBuffer, len);
     }
 
     return (NULL);
