@@ -64,14 +64,16 @@ extern UART_Handle uart_pq9_bus;
 
 bool start_flag = false;
 //extern vector_t mag1Data = {34.3, 43, 54};
-extern int16_t magData = {0,0,0};
+int16_t magData = {0,0,0};
 extern int32_t loop_time = 0;
+
+int len;
+char uartTxBuffer[100];
 /*
  *  ======== mainThread ========
  */
 void *mainThread(void *arg0)
 {
-
     /* Call driver init functions */
     GPIO_init();
     UART_init();
@@ -97,9 +99,12 @@ void *mainThread(void *arg0)
     init_parameters();
     OSAL_init();
 
-    //UART_write(uart_dbg_bus, "PING!!!", 5);
+    len = sprintf(uartTxBuffer, "[BMX]: Calibration mode\n");
+    UART_write(uart_dbg_bus, uartTxBuffer, len);
+
     if(bmxMag_init()){
-        //UART_write(uart_dbg_bus, "BMX is alive!", 12);
+        len = sprintf(uartTxBuffer, "[BMX]: Calibrated and in Startup\n");
+        UART_write(uart_dbg_bus, uartTxBuffer, len);
     }
 
     uint16_t boot_counter=0, size;
@@ -120,17 +125,14 @@ void *mainThread(void *arg0)
 
     /* Loop forever echoing */
     while (1) {
+        now_time = OSAL_sys_GetTick();
 
-
-
-
-                now_time = OSAL_sys_GetTick();
-                if(now_time - wdg_time > 15500) {
-                  GPIO_write(EXT_WDG, 1);
-                  usleep(34800);
-                  GPIO_write(EXT_WDG, 0);
-                  wdg_time = now_time;
-                }
+        if(now_time - wdg_time > 15500) {
+            GPIO_write(EXT_WDG, 1);
+            usleep(34800);
+            GPIO_write(EXT_WDG, 0);
+            wdg_time = now_time;
+        }
 
         set_parameter(SBSYS_reset_clr_int_wdg_param_id, NULL);
 
@@ -193,7 +195,6 @@ char msg[100];
 /*  ======== senThread ========
  *  This a dbg thread for outputing sensor readings
  */
-
 void *pqDetThread(void *arg0)
 {
 
@@ -202,14 +203,11 @@ void *pqDetThread(void *arg0)
     }
     uint32_t start_time = 0;
     uint32_t stop_time = 0;
-    /* Loop forever */
-    char uartTxBuffer[20];
-    bool check1;
+
     while (1) {
-
-        /*errors
+        start_time = Clock_getTicks();
         bmxMag_read_calib_data(magData);
-
+        /*
         // make sure to leave counts below static, they aren't remembered by controlLoop,
         // they are just incremented by controlLoop
         static unsigned int c_tumb = 0;
@@ -219,17 +217,13 @@ void *pqDetThread(void *arg0)
         vector_t s_on     = {0,0,0};
         vector_t t_on     = {0,0,0};
         vector_t p_tumb   = {0,0,0};
-        start_time = Clock_getTicks();
+
         controlLoop(b1_raw, b2_raw, &s_on, &t_on, &p_tumb, &c_tumb, &c_detumb);
         usleep(1000);
-        stop_time = Clock_getTicks();
 
-        loop_time = stop_time - start_time;
         */
-        check1 = bmxMag_read_id();
-
-        //int len = sprintf(uartTxBuffer, "alive: %d\n", check1);
-        //UART_write(uart_dbg_bus, uartTxBuffer, len);
+        stop_time = Clock_getTicks();
+        loop_time = stop_time - start_time;
     }
 
     return (NULL);
