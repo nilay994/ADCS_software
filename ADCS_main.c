@@ -99,11 +99,20 @@ void *mainThread(void *arg0)
     init_parameters();
     OSAL_init();
 
-    len = sprintf(uartTxBuffer, "[BMX]: Calibration mode\n");
+    len = sprintf(uartTxBuffer, "[BMX]Calibration mode, figure of 8\n");
     UART_write(uart_dbg_bus, uartTxBuffer, len);
+
+    int16_t mag1_bias[3] = {0,0,0};
+    int16_t mag2_bias[3] = {0,0,0};
 
     if(bmxMag_init()){
         len = sprintf(uartTxBuffer, "[BMX]: Calibrated and in Startup\n");
+        UART_write(uart_dbg_bus, uartTxBuffer, len);
+
+        len = sprintf(uartTxBuffer, "[BMX1 Bias] x:%d, y:%d, z%d\n", mag1_bias[1], mag1_bias[2], mag1_bias[3]);
+        UART_write(uart_dbg_bus, uartTxBuffer, len);
+
+        len = sprintf(uartTxBuffer, "[BMX2 Bias] x:%d, y:%d, z%d\n", mag2_bias[1], mag2_bias[2], mag2_bias[3]);
         UART_write(uart_dbg_bus, uartTxBuffer, len);
     }
 
@@ -207,7 +216,7 @@ void *pqDetThread(void *arg0)
     while (1) {
         start_time = Clock_getTicks();
         bmxMag_read_calib_data(magData);
-        /*
+
         // make sure to leave counts below static, they aren't remembered by controlLoop,
         // they are just incremented by controlLoop
         static unsigned int c_tumb = 0;
@@ -221,7 +230,7 @@ void *pqDetThread(void *arg0)
         controlLoop(b1_raw, b2_raw, &s_on, &t_on, &p_tumb, &c_tumb, &c_detumb);
         usleep(1000);
 
-        */
+
         stop_time = Clock_getTicks();
         loop_time = stop_time - start_time;
     }
