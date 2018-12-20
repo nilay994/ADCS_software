@@ -99,13 +99,14 @@ void *mainThread(void *arg0)
     init_parameters();
     OSAL_init();
 
-    len = sprintf(uartTxBuffer, "[BMX]Calibration mode, figure of 8\n");
-    UART_write(uart_dbg_bus, uartTxBuffer, len);
+    //len = sprintf(uartTxBuffer, "[BMX]Calibration mode, figure of 8\n");
+    //UART_write(uart_dbg_bus, uartTxBuffer, len);
 
     int16_t mag1_bias[3] = {0,0,0};
     int16_t mag2_bias[3] = {0,0,0};
 
     if(bmxMag_init()){
+        /*
         len = sprintf(uartTxBuffer, "[BMX]: Calibrated and in Startup\n");
         UART_write(uart_dbg_bus, uartTxBuffer, len);
 
@@ -114,7 +115,9 @@ void *mainThread(void *arg0)
 
         len = sprintf(uartTxBuffer, "[BMX2 Bias] x:%d, y:%d, z%d\n", mag2_bias[1], mag2_bias[2], mag2_bias[3]);
         UART_write(uart_dbg_bus, uartTxBuffer, len);
+        */
     }
+
 
     uint16_t boot_counter=0, size;
     uint8_t buf[4];
@@ -214,6 +217,7 @@ void *pqDetThread(void *arg0)
     uint32_t stop_time = 0;
 
     while (1) {
+
         start_time = Clock_getTicks();
         bmxMag_read_calib_data(magData);
 
@@ -233,6 +237,7 @@ void *pqDetThread(void *arg0)
 
         stop_time = Clock_getTicks();
         loop_time = stop_time - start_time;
+
     }
 
     return (NULL);
